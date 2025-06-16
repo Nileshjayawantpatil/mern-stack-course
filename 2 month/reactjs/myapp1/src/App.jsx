@@ -2,30 +2,41 @@ import { useState } from "react"
 
 
 function App() {
-  const [name, setName] = useState() //Hook 1
-  const [ShowName, setShowName] = (false);
+  const [name, setName] = useState()
+  const [showname, setShowName] = useState(false);
 
 
-  const handleonChange = (e) => {
+  const handleOnchange = (e) => {
     console.log(e.target.value);
     setName(e.target.value);
+
+
+
+
 
   };
 
   const handleSumit = () => {
     setShowName(true);
-  }
+
+
+  };
+
+
+
 
 
 
 
 
   return (
+
+
     <>
-      <input name="name" placeholder="Enter your name" onChange={handleonChange} />
-      <Button onClick={handleSumit} >Sumit</Button>
+      <input name="name" placeholder="Enter your name" onChange={handleOnClick} />
+      <Button onClick={handleSumit}>Sumit</Button>
       {
-        ShowName && <h1>{name}</h1>
+        showName && <h1>{name}</h1>
       }
 
 
@@ -34,6 +45,8 @@ function App() {
     </>
   );
 
-}
+};
 
-export default App
+
+export default App;
+
