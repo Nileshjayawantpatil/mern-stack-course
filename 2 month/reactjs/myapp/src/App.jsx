@@ -1,17 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import student from './student.jsx'
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
+
     <>
-    <h1>King</h1>
-    
+    <student/>
+    <student Name="Nilesh"  Age={20}  isstudent={true}/>
+
+
+
+
+
+
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
