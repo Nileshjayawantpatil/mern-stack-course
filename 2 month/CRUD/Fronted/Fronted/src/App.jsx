@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Students from './assets/students';
+import Students from './pages/Students';
 import './app.css'
 
 
