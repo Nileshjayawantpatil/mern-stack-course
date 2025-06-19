@@ -1,4 +1,5 @@
-import student from './student.jsx'
+import student from './assets'
+
 
 
 function App() {
