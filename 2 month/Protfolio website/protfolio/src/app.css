@@ -1,0 +1,46 @@
+body{
+    background:#f8fafc;
+    font-family: 'Poppins', sans-serif;
+    color:#1f2937;
+    
+
+}
+.navbar{
+    background-color:#1e40af;
+
+}
+.nav-link{
+    color:#ffff !important;
+    padding: 15px;
+
+
+    
+
+}
+.navbar-brand{
+    color:#ffff !important;
+
+}
+.navbar-collapse{
+    margin-left: 68%;
+
+    
+}
+.hero-section{
+    background-color:aqua;
+    height:200px;
+
+
+
+
+    
+
+}
+.section-title{
+
+    margin-bottom:40px;
+    
+
+
+
+}
