@@ -5,12 +5,14 @@ const bodyParser = require("body-parser");
 const connectMongoDB = require("./config/db");
 const Student = require("./models/studentModel");
 const { CreateStudent, getAllStudent } = require("./Controller/students");
+const cors = require("cors")
 
 // Create an Express application
 const app = express();
 
 
 
+app.use(cors())
 
 // Port where the server will run
 

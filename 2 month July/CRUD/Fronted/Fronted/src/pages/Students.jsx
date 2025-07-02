@@ -1,142 +1,174 @@
+import React, { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Table from "react-bootstrap/Table";
+import axios from "axios";
 
-import React from 'react'
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Table from 'react-bootstrap/Table';
+const Student = () => {
+  const [studentData, setStudentData] = useState();
+
+  const [firstName, setFirstName] = useState()
+  const [lastname, setLastname] = useState()
+  const [std, setStd] = useState()
+  const [rollNo, setRollNo] = useState()
+  const [address, setAddress] = useState()
+
+  // API Integration => GET All studnt List
+  const getAllStudentData = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/students");
+      setStudentData(response.data);
+      console.log(response.data, "response");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllStudentData();
+  }, []);
+
+  const submitStudentData = async () => {
+
+    try {
+      const payload = {
+        firstName: firstName,
+        lastName: lastname,
+        std: std,
+        rollNo: rollNo,
+        address: address,
+      };
+      const response = await axios.post("http://localhost:8080/students", payload);
+
+      console.log(response.data, "====>")
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onChangeFirstName = (e) => {
+    try {
+      setFirstName(e.target.value)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const onChangeLastname = (e) => {
+    try {
+      setLastname(e.target.value)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const onChangeStd = (e) => {
+    try {
+      setStd(e.target.value)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const onChangeRollNo = (e) => {
+    try {
+      setRollNo(e.target.value)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const onChangeAddress = (e) => {
+    try {
+      setAddress(e.target.value)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
-const Students = () => {
-    return (
-        <div>
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-6">
-                        <div className="Add-div">
-                            <h1 className="text-center">Add Student</h1>
 
-                            <Form>
+  return (
+    <div>
+      <h1 className="text-center my-5">Manage Student Records</h1>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <div className="add-form-div">
+              <h2 className="text-center">Add Student</h2>
+              <Form>
+                <Row className="mb-3">
+                  <Form.Group as={Col}>
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control type="text" placeholder="Enter First Name" onChange={onChangeFirstName} />
+                  </Form.Group>
 
-                                <h1 className="text-center">Add Student</h1>
-                                <Row className="mb-3">
-                                    <Form.Group as={Col} controlId="formGridEmail">
-                                        <Form.Label>Frist Name</Form.Label>
-                                        <Form.Control type="text" placeholder="Enter Name" />
-                                    </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control type="text" placeholder="Last Name" onChange={onChangeLastname} />
+                  </Form.Group>
+                </Row>
 
-                                    <Form.Group as={Col} controlId="formGridPassword">
-                                        <Form.Label>Last Name</Form.Label>
-                                        <Form.Control type="text" placeholder=" last Name" />
-                                    </Form.Group>
-                                </Row>
-                                <Row className="mb-3">
-                                    <Form.Group as={Col} controlId="formGridEmail">
-                                        <Form.Label>std</Form.Label>
-                                        <Form.Control type="number" placeholder="Enter std" />
-                                    </Form.Group>
+                <Row className="mb-3">
+                  <Form.Group as={Col}>
+                    <Form.Label>Std</Form.Label>
+                    <Form.Control type="text" placeholder="Enter Std" onChange={onChangeStd} />
+                  </Form.Group>
 
-                                    <Form.Group as={Col} controlId="formGridPassword">
-                                        <Form.Label>Id</Form.Label>
-                                        <Form.Control type="id" placeholder=" Enter id" />
-                                    </Form.Group>
-                                </Row>
+                  <Form.Group as={Col}>
+                    <Form.Label>Roll No</Form.Label>
+                    <Form.Control type="text" placeholder="Roll No" onChange={onChangeRollNo} />
+                  </Form.Group>
+                </Row>
 
-                                <Form.Group className="mb-3" controlId="formGridAddress1">
-                                    <Form.Label>address</Form.Label>
-                                    <Form.Control placeholder="1234 Main St" />
-                                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Address</Form.Label>
+                  <Form.Control placeholder="1234 Main St" onChange={onChangeAddress} />
+                </Form.Group>
 
-
-                                <Row className="mb-3">
-                                    <Form.Group as={Col} controlId="formGridCity">
-                                        <Form.Label>City</Form.Label>
-                                        <Form.Control />
-                                    </Form.Group>
-
-                                    <Form.Group as={Col} controlId="formGridState">
-                                        <Form.Label>State</Form.Label>
-                                        <Form.Select defaultValue="Choose...">
-                                            <option>Choose...</option>
-                                            <option>...</option>
-                                        </Form.Select>
-                                    </Form.Group>
-
-                                    <Form.Group as={Col} controlId="formGridZip">
-                                        <Form.Label>Zip</Form.Label>
-                                        <Form.Control />
-                                    </Form.Group>
-                                </Row>
-
-
-                                <Button variant="primary" type="submit">
-                                    Submit
-                                </Button>
-                            </Form>student add from</div>
-                    </div>
-
-
-
-
-
-
-
-                    <div className="col-md-6"><Table striped bordered hover size="sm">
-                        <thead>
-                            <tr>
-                                <th>id</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>std</th>
-                                <th>Address</th>
-                                <th>State</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Nilesh</td>
-                                <td>Patil</td>
-                                <td>te</td>
-                                <td>Kasegaon</td>
-                                <td>Maharashtra</td>
-
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Nilesh</td>
-                                <td>patil</td>
-                                <td>te</td>
-                                <td>Kasegaon</td>
-                                <td>Maharashtra</td>
-
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Nilesh</td>
-                                <td>Patil</td>
-                                <td>te</td>
-                                <td>Kasegaon</td>
-                                <td>Maharashtra</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Nilesh</td>
-                                <td>Patil</td>
-                                <td>te</td>
-                                <td>Kasegon</td>
-                                <td>Maharshtra</td>
-                            </tr>
-                        </tbody>
-                    </Table></div>
-
-                </div>
+                <Button variant="primary" onClick={submitStudentData}>
+                  Submit
+                </Button>
+              </Form>
             </div>
+          </div>
+          <div className="col-md-6">
+            <div className="add-form-div">
+              <h2 className="text-center">Student List</h2>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Std</th>
+                    <th>Roll No</th>
+                    <th>Address</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {studentData &&
+                    studentData.map((each, index) => (
+                      <tr>
+                        <td>{index + 1}</td>
+                        <td>{each?.firstName}</td>
+                        <td>{each?.lastName}</td>
+                        <td>{each?.std}</td>
+                        <td>{each?.rollNo}</td>
+                        <td>{each?.address}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </Table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-
-        </div >
-    )
-}
-
-export default Students
+export default Student;
